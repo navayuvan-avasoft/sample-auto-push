@@ -27,7 +27,6 @@ def force_push_to_branch(branch):
 
 checkout_to_main_and_rebase()
 status = checkout_to_branch_and_rebase('dev')
-print(status)
 if (not status):
     raise ValueError("Aborting the process. Needs Auto Merging.")
 
