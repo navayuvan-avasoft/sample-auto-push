@@ -15,7 +15,7 @@ def checkout_to_main_and_rebase():
 def checkout_to_dev_and_rebase():
     cmd = 'git checkout dev && git pull origin main -r'
     output = execute_command(cmd)
-    if ('Automatic merge failed' in output):
+    if ('CONFLICT (content):' in output):
         return False
     return True
 
