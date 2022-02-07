@@ -12,8 +12,8 @@ def checkout_to_main_and_rebase():
     print(execute_command(cmd))
 
 
-def checkout_to_dev_and_rebase():
-    cmd = 'git checkout dev && git pull origin main -r'
+def checkout_to_branch_and_rebase(branch):
+    cmd = 'git checkout {0} && git pull origin main -r'.replace('{0}', branch)
     output = execute_command(cmd)
     if ('CONFLICT (content):' in output):
         return False
@@ -26,7 +26,7 @@ def force_push_to_branch(branch):
 
 
 checkout_to_main_and_rebase()
-status = checkout_to_dev_and_rebase()
+status = checkout_to_branch_and_rebase('dev')
 print(status)
 if (not status):
     raise ValueError("Aborting the process. Needs Auto Merging.")
